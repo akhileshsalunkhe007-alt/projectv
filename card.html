@@ -7,100 +7,115 @@
   <style>
     body {
       margin: 0;
-      height: 100vh;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+      background: radial-gradient(circle at top, #1a1a1a, #000);
       color: #f2f2f2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      overflow-x: hidden;
     }
 
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      position: relative;
-    }
-
-    .photo {
-      position: absolute;
-      width: 260px;
-      height: 360px;
-      object-fit: cover;
-      border-radius: 20px;
-      box-shadow: 0 0 25px rgba(255, 0, 0, 0.35);
-    }
-
-    .photo.top {
-      top: -40px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .photo.left {
-      bottom: -20px;
-      left: 0;
-    }
-
-    .photo.right {
-      bottom: -20px;
-      right: 0;
-    }
-
-    .text-box {
-      margin: auto;
-      max-width: 520px;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 40px;
-      border-radius: 24px;
-      text-align: center;
-      line-height: 1.8;
-      font-size: 1.15em;
-      z-index: 2;
-    }
-
-    .open-btn {
-      position: absolute;
+    /* ---------- OPEN SCREEN ---------- */
+    .open-screen {
+      position: fixed;
       inset: 0;
+      background: #000;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #0f0f0f;
-      z-index: 5;
-      cursor: pointer;
-      transition: opacity 0.8s ease;
+      z-index: 10;
     }
 
-    .open-btn.hidden {
+    .open-screen.hidden {
       opacity: 0;
       pointer-events: none;
+      transition: opacity 1s ease;
     }
 
-    .open-btn button {
-      padding: 14px 30px;
-      font-size: 1em;
-      border-radius: 30px;
+    .open-screen button {
+      padding: 16px 36px;
+      font-size: 1.1em;
+      border-radius: 40px;
       border: none;
       background: #b30000;
       color: #fff;
       cursor: pointer;
     }
 
+    /* ---------- MAIN LAYOUT ---------- */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 80px 20px;
+    }
+
+    .spread {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      min-height: 600px;
+    }
+
+    /* ---------- TEXT ---------- */
+    .text-box {
+      max-width: 520px;
+      margin: auto;
+      background: rgba(0, 0, 0, 0.65);
+      padding: 40px;
+      border-radius: 24px;
+      text-align: center;
+      font-size: 1.15em;
+      line-height: 1.8;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ---------- IMAGES ---------- */
+    .photo {
+      position: absolute;
+      width: 260px;
+      height: 360px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.35);
+    }
+
+    /* her1.jpg → left centre */
+    .photo.left {
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* her2.jpg → top right */
+    .photo.top-right {
+      right: 0;
+      top: 0;
+    }
+
+    /* her3.jpg → bottom right */
+    .photo.bottom-right {
+      right: 0;
+      bottom: 0;
+    }
+
+    /* ---------- MOBILE FIX ---------- */
     @media (max-width: 900px) {
-      body {
-        height: auto;
-        padding: 40px 0;
+      .spread {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        min-height: auto;
       }
 
       .photo {
         position: static;
         width: 100%;
         height: 360px;
-        margin-bottom: 20px;
       }
 
       .text-box {
-        margin-top: 20px;
+        order: -1;
       }
     }
   </style>
@@ -109,41 +124,43 @@
 <body>
 
   <audio id="music" loop>
-    <source src="song.mp3" type="audio/mpeg">
+    <source src="proposal.mp3" type="audio/mpeg">
   </audio>
 
   <!-- OPEN SCREEN -->
-  <div class="open-btn" id="openBtn">
-    <button onclick="openCard()">Open ❤️</button>
+  <div class="open-screen" id="openScreen">
+    <button onclick="openExperience()">Open 💗</button>
   </div>
 
-  <!-- MAIN CONTENT -->
-  <div class="container">
+  <!-- MAIN PAGE -->
+  <div class="page">
+    <div class="spread">
 
-    <img src="her1.jpg" class="photo top" alt="Her">
-    <img src="her2.jpg" class="photo left" alt="Her">
-    <img src="her3.jpg" class="photo right" alt="Her">
+      <img src="her1.jpg" class="photo left" alt="Her">
+      <img src="her2.jpg" class="photo top-right" alt="Her">
+      <img src="her3.jpg" class="photo bottom-right" alt="Her">
 
-    <div class="text-box">
-      Shivangi,<br><br>
+      <div class="text-box">
+        Shivangi,<br><br>
 
-      From the day you came into my life, every moment has felt like magic.<br>
-      I prayed for your acceptance for so long,<br>
-      and now that I have it, the wait to be together formally feels so tough.<br><br>
+        From the day you came into my life, every moment has felt like magic.<br>
+        I prayed for your acceptance for so long,<br>
+        and now that I have it, the wait to be together formally feels so tough.<br><br>
 
-      Our love is special.  
-      I truly believe we have known each other from past lifetimes,<br>
-      which is why the distance feels so difficult 🥺<br><br>
+        Our love is special.  
+        I truly believe we have known each other from past lifetimes,<br>
+        which is why the distance feels so difficult 🥺<br><br>
 
-      I love you ❤️<br>
-      Will you be mine forever, Ms. Shivangi Singh? 🫶🏻
+        I love you ❤️<br>
+        Will you be mine forever, Ms. Shivangi Singh? 🫶🏻
+      </div>
+
     </div>
-
   </div>
 
   <script>
-    function openCard() {
-      document.getElementById("openBtn").classList.add("hidden");
+    function openExperience() {
+      document.getElementById("openScreen").classList.add("hidden");
       document.getElementById("music").play();
     }
   </script>
