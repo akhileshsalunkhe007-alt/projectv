@@ -1,161 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>For You ❤️</title>
+  <meta charset="UTF-8">
+  <title>For You ❤️</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Georgia", serif;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Georgia", serif;
+    }
 
-        body {
-            height: 100vh;
-            background: radial-gradient(#111, #000);
-            overflow: hidden;
-        }
+    body {
+      height: 100vh;
+      background: radial-gradient(circle at top, #111, #000);
+      overflow: hidden;
+    }
 
-        /* ---------- COVER ---------- */
-        .cover {
-            position: fixed;
-            inset: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 5;
-        }
+    /* ---------- COVER ---------- */
+    .cover {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
 
-        #openBtn {
-            padding: 18px 42px;
-            font-size: 20px;
-            border: none;
-            border-radius: 40px;
-            background: crimson;
-            color: white;
-            cursor: pointer;
-            box-shadow: 0 0 25px crimson;
-            transition: transform 0.2s ease;
-        }
+    #openBtn {
+      padding: 18px 42px;
+      font-size: 20px;
+      border: none;
+      border-radius: 40px;
+      background: crimson;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 25px crimson;
+    }
 
-        #openBtn:hover {
-            transform: scale(1.05);
-        }
+    /* ---------- CARD ---------- */
+    .card {
+      position: fixed;
+      inset: 0;
+      padding: 50px 60px;
+      display: none;
+    }
 
-        /* ---------- CARD ---------- */
-        .card {
-            position: fixed;
-            inset: 0;
-            padding: 60px;
-            display: none;
-        }
+    .spread {
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr 0.9fr;
+      grid-template-rows: 1fr;
+      gap: 30px;
+    }
 
-        .spread {
-            height: 100%;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1.4fr 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            gap: 30px;
-            align-items: center;
-        }
+    /* ---------- LEFT IMAGE ---------- */
+    .left-img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        /* ---------- IMAGES ---------- */
-        img {
-            width: 100%;
-            height: auto;
-            border-radius: 18px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-            object-fit: cover;
-        }
+    .left-img img {
+      width: 75%;
+      max-height: 85vh;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    }
 
-        .left-img {
-            grid-column: 1;
-            grid-row: 1 / span 2;
-            display: flex;
-            justify-content: center;
-        }
+    /* ---------- TEXT ---------- */
+    .text-area {
+      padding: 20px 10px;
+      overflow-y: auto;
+    }
 
-        .left-img img {
-            width: 85%;
-        }
+    .text-area::-webkit-scrollbar {
+      display: none;
+    }
 
-        .right-top {
-            grid-column: 3;
-            grid-row: 1;
-        }
+    .text-area p {
+      font-size: 24px;
+      line-height: 1.75;
+      text-align: center;
+      color: #fff;
+      white-space: pre-line;
+      text-shadow:
+        0 0 8px rgba(255, 150, 200, 0.9),
+        0 0 18px rgba(255, 50, 150, 0.6);
+    }
 
-        .right-bottom {
-            grid-column: 3;
-            grid-row: 2;
-        }
+    /* ---------- RIGHT IMAGES ---------- */
+    .right-images {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      justify-content: center;
+    }
 
-        /* ---------- TEXT ---------- */
-        .text-area {
-            grid-column: 2;
-            grid-row: 1 / span 2;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .text-area p {
-            font-size: 24px;
-            line-height: 1.7;
-            color: #fff;
-            white-space: pre-line;
-            text-shadow:
-                0 0 8px rgba(255, 120, 170, 0.8),
-                0 0 18px rgba(255, 0, 120, 0.6);
-        }
-    </style>
+    .right-images img {
+      width: 100%;
+      height: 42vh;
+      object-fit: cover;
+      border-radius: 18px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+    }
+  </style>
 </head>
 
 <body>
 
-    <!-- Opening Screen -->
-    <div class="cover" id="cover">
-        <button id="openBtn">Open 💖</button>
+  <!-- COVER -->
+  <div class="cover" id="cover">
+    <button id="openBtn">Open 💖</button>
+  </div>
+
+  <!-- CARD -->
+  <div class="card" id="card">
+    <div class="spread">
+
+      <!-- LEFT -->
+      <div class="left-img">
+        <img src="her1.jpg" alt="Her">
+      </div>
+
+      <!-- TEXT -->
+      <div class="text-area">
+        <p id="typewriter"></p>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="right-images">
+        <img src="her2.jpg" alt="Her">
+        <img src="her3.jpg" alt="Her">
+      </div>
+
     </div>
+  </div>
 
-    <!-- Card -->
-    <div class="card" id="card">
-        <div class="spread">
+  <!-- MUSIC -->
+  <audio id="bgMusic" src="proposal.mp3"></audio>
 
-            <div class="left-img">
-                <img src="her1.jpg" alt="Her">
-            </div>
+  <script>
+    const openBtn = document.getElementById("openBtn");
+    const cover = document.getElementById("cover");
+    const card = document.getElementById("card");
+    const music = document.getElementById("bgMusic");
+    const textEl = document.getElementById("typewriter");
 
-            <div class="text-area">
-                <p id="typewriter"></p>
-            </div>
-
-            <div class="right-top">
-                <img src="her2.jpg" alt="Her">
-            </div>
-
-            <div class="right-bottom">
-                <img src="her3.jpg" alt="Her">
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Music -->
-    <audio id="bgMusic" src="proposal.mp3"></audio>
-
-    <script>
-        const openBtn = document.getElementById("openBtn");
-        const cover = document.getElementById("cover");
-        const card = document.getElementById("card");
-        const music = document.getElementById("bgMusic");
-        const textEl = document.getElementById("typewriter");
-
-        const message = `Shivangi,
+    const message = `Shivangi,
 
 From the day you came into my life, every moment has felt like magic.
 I prayed for your acceptance for so long,
@@ -168,24 +162,23 @@ which is why the distance feels so difficult 🥺
 I love you ❤️
 Will you be mine forever, Ms. Shivangi Singh? 🫶🏻`;
 
-        let index = 0;
+    let i = 0;
 
-        openBtn.addEventListener("click", () => {
-            cover.style.display = "none";
-            card.style.display = "block";
+    openBtn.addEventListener("click", () => {
+      cover.style.display = "none";
+      card.style.display = "block";
+      music.play().catch(() => {});
+      typeWriter();
+    });
 
-            music.play().catch(() => {});
-            typeWriter();
-        });
-
-        function typeWriter() {
-            if (index < message.length) {
-                textEl.textContent += message.charAt(index);
-                index++;
-                setTimeout(typeWriter, 45);
-            }
-        }
-    </script>
+    function typeWriter() {
+      if (i < message.length) {
+        textEl.textContent += message.charAt(i);
+        i++;
+        setTimeout(typeWriter, 40);
+      }
+    }
+  </script>
 
 </body>
 </html>
