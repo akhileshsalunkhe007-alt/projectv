@@ -1,169 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>For You ❤️</title>
+    <meta charset="UTF-8">
+    <title>For You ❤️</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: radial-gradient(circle at top, #1a1a1a, #000);
-      color: #f2f2f2;
-      overflow-x: hidden;
-    }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Georgia", serif;
+        }
 
-    /* ---------- OPEN SCREEN ---------- */
-    .open-screen {
-      position: fixed;
-      inset: 0;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 10;
-    }
+        body {
+            height: 100vh;
+            background: radial-gradient(#111, #000);
+            overflow: hidden;
+        }
 
-    .open-screen.hidden {
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 1s ease;
-    }
+        /* ---------- COVER ---------- */
+        .cover {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+        }
 
-    .open-screen button {
-      padding: 16px 36px;
-      font-size: 1.1em;
-      border-radius: 40px;
-      border: none;
-      background: #b30000;
-      color: #fff;
-      cursor: pointer;
-    }
+        #openBtn {
+            padding: 18px 42px;
+            font-size: 20px;
+            border: none;
+            border-radius: 40px;
+            background: crimson;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 0 25px crimson;
+            transition: transform 0.2s ease;
+        }
 
-    /* ---------- MAIN LAYOUT ---------- */
-    .page {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 80px 20px;
-    }
+        #openBtn:hover {
+            transform: scale(1.05);
+        }
 
-    .spread {
-      position: relative;
-      width: 100%;
-      max-width: 1200px;
-      min-height: 600px;
-    }
+        /* ---------- CARD ---------- */
+        .card {
+            position: fixed;
+            inset: 0;
+            padding: 60px;
+            display: none;
+        }
 
-    /* ---------- TEXT ---------- */
-    .text-box {
-      max-width: 520px;
-      margin: auto;
-      background: rgba(0, 0, 0, 0.65);
-      padding: 40px;
-      border-radius: 24px;
-      text-align: center;
-      font-size: 1.15em;
-      line-height: 1.8;
-      position: relative;
-      z-index: 2;
-    }
+        .spread {
+            height: 100%;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
 
-    /* ---------- IMAGES ---------- */
-    .photo {
-      position: absolute;
-      width: 260px;
-      height: 360px;
-      object-fit: cover;
-      border-radius: 20px;
-      box-shadow: 0 0 30px rgba(255, 0, 0, 0.35);
-    }
+        /* ---------- IMAGES ---------- */
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 18px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            object-fit: cover;
+        }
 
-    /* her1.jpg → left centre */
-    .photo.left {
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-    }
+        .left-img {
+            grid-column: 1;
+            grid-row: 1 / span 2;
+            display: flex;
+            justify-content: center;
+        }
 
-    /* her2.jpg → top right */
-    .photo.top-right {
-      right: 0;
-      top: 0;
-    }
+        .left-img img {
+            width: 85%;
+        }
 
-    /* her3.jpg → bottom right */
-    .photo.bottom-right {
-      right: 0;
-      bottom: 0;
-    }
+        .right-top {
+            grid-column: 3;
+            grid-row: 1;
+        }
 
-    /* ---------- MOBILE FIX ---------- */
-    @media (max-width: 900px) {
-      .spread {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        min-height: auto;
-      }
+        .right-bottom {
+            grid-column: 3;
+            grid-row: 2;
+        }
 
-      .photo {
-        position: static;
-        width: 100%;
-        height: 360px;
-      }
+        /* ---------- TEXT ---------- */
+        .text-area {
+            grid-column: 2;
+            grid-row: 1 / span 2;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
 
-      .text-box {
-        order: -1;
-      }
-    }
-  </style>
+        .text-area p {
+            font-size: 24px;
+            line-height: 1.7;
+            color: #fff;
+            white-space: pre-line;
+            text-shadow:
+                0 0 8px rgba(255, 120, 170, 0.8),
+                0 0 18px rgba(255, 0, 120, 0.6);
+        }
+    </style>
 </head>
 
 <body>
 
-  <audio id="music" loop>
-    <source src="proposal.mp3" type="audio/mpeg">
-  </audio>
-
-  <!-- OPEN SCREEN -->
-  <div class="open-screen" id="openScreen">
-    <button onclick="openExperience()">Open 💗</button>
-  </div>
-
-  <!-- MAIN PAGE -->
-  <div class="page">
-    <div class="spread">
-
-      <img src="her1.jpg" class="photo left" alt="Her">
-      <img src="her2.jpg" class="photo top-right" alt="Her">
-      <img src="her3.jpg" class="photo bottom-right" alt="Her">
-
-      <div class="text-box">
-        Shivangi,<br><br>
-
-        From the day you came into my life, every moment has felt like magic.<br>
-        I prayed for your acceptance for so long,<br>
-        and now that I have it, the wait to be together formally feels so tough.<br><br>
-
-        Our love is special.  
-        I truly believe we have known each other from past lifetimes,<br>
-        which is why the distance feels so difficult 🥺<br><br>
-
-        I love you ❤️<br>
-        Will you be mine forever, Ms. Shivangi Singh? 🫶🏻
-      </div>
-
+    <!-- Opening Screen -->
+    <div class="cover" id="cover">
+        <button id="openBtn">Open 💖</button>
     </div>
-  </div>
 
-  <script>
-    function openExperience() {
-      document.getElementById("openScreen").classList.add("hidden");
-      document.getElementById("music").play();
-    }
-  </script>
+    <!-- Card -->
+    <div class="card" id="card">
+        <div class="spread">
+
+            <div class="left-img">
+                <img src="her1.jpg" alt="Her">
+            </div>
+
+            <div class="text-area">
+                <p id="typewriter"></p>
+            </div>
+
+            <div class="right-top">
+                <img src="her2.jpg" alt="Her">
+            </div>
+
+            <div class="right-bottom">
+                <img src="her3.jpg" alt="Her">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Music -->
+    <audio id="bgMusic" src="music.mp3"></audio>
+
+    <script>
+        const openBtn = document.getElementById("openBtn");
+        const cover = document.getElementById("cover");
+        const card = document.getElementById("card");
+        const music = document.getElementById("bgMusic");
+        const textEl = document.getElementById("typewriter");
+
+        const message = `Shivangi,
+
+From the day you came into my life, every moment has felt like magic.
+I prayed for your acceptance for so long,
+and now that I have it, the wait to be together formally feels so tough.
+
+Our love is special.
+I truly believe we have known each other from past lifetimes,
+which is why the distance feels so difficult 🥺
+
+I love you ❤️
+Will you be mine forever, Ms. Shivangi Singh? 🫶🏻`;
+
+        let index = 0;
+
+        openBtn.addEventListener("click", () => {
+            cover.style.display = "none";
+            card.style.display = "block";
+
+            music.play().catch(() => {});
+            typeWriter();
+        });
+
+        function typeWriter() {
+            if (index < message.length) {
+                textEl.textContent += message.charAt(index);
+                index++;
+                setTimeout(typeWriter, 45);
+            }
+        }
+    </script>
 
 </body>
 </html>
