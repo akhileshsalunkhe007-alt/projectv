@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+    }
+
+    .card {
+      width: 340px;
+      height: 260px;
+      perspective: 1200px;
+      cursor: pointer;
+    }
+
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 1s ease;
+    }
+
+    .card.open .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .front {
+      background: #b30000;
+    }
+
+    .front img {
+      width: 110px;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .front span {
+      font-size: 1.2em;
+    }
+
+    .back {
+      background: #1a1a1a;
+      transform: rotateY(180deg);
+      font-size: 1em;
+      line-height: 1.5;
+      overflow-y: auto;
+    }
+
+    .photos {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .photos img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background Music -->
+  <audio id="bgMusic">
+    <source src="proposal.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="card" onclick="openCard()">
+    <div class="card-inner">
+
+      <!-- Front -->
+      <div class="card-face front">
+        <img src="her1.jpg" alt="Her">
+        <span>Click to open 💌</span>
+      </div>
+
+      <!-- Back -->
+      <div class="card-face back">
+        Shivangi,<br><br>
+
+        From the day you came into my life, every moment has felt like magic<br>
+        I prayed for your acceptance so long,<br>
+        and now that I have it, the wait to be together formally feels so tough<br><br>
+
+        Our love is special.<br>
+        I truly believe we have known each other from past lifetimes<br><br>
+
+        Which is why the distance feels so difficult🥺<br><br>
+
+        I haven't asked you formally yet<br>
+        (and I will do that in person)<br>
+        but I want to take this moment to ask you virtually.<br><br>
+
+        I love you❤️<br>
+        Will you be mine forever, Ms. Shivangi Singh?🫶🏻
+
+        <div class="photos">
+          <img src="her1.jpg" alt="">
+          <img src="her2.jpg" alt="">
+          <img src="her3.jpg" alt="">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let opened = false;
+
+    function openCard() {
+      const card = document.querySelector('.card');
+      const music = document.getElementById('bgMusic');
+
+      card.classList.toggle('open');
+
+      if (!opened) {
+        music.play();
+        opened = true;
+      }
+    }
+  </script>
+
+</body>
+</html>
+
