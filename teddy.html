@@ -33,9 +33,16 @@ body{
   width:240px;
   position:absolute;
   bottom:30px;
-  left:-300px;
-  animation: walkIn 3s ease forwards;
+  left:80px;                 /* FIX: lock final position */
+  animation: walkIn 3s ease;
   cursor:pointer;
+
+  background:transparent;
+  mix-blend-mode: normal;
+  filter: drop-shadow(0 0 20px rgba(255,0,0,0.35));
+
+  transition: transform 0.3s ease;
+}
 
   /* transparency fixes */
   background:transparent;
@@ -46,13 +53,14 @@ body{
 }
 
 @keyframes walkIn{
-  to{ left:80px; }
+  from { left:-300px; }
+  to   { left:80px; }
 }
 
 /* HEARTBEAT + HUG */
 .teddy.hug{
   animation: heartbeat 1.2s ease-in-out;
-  filter: drop-shadow(0 0 35px rgba(255,0,0,0.9));
+  transform-origin: center bottom;
 }
 
 @keyframes heartbeat{
