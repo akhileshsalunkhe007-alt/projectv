@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You 🧸</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:radial-gradient(circle at top, #1a1a1a, #000);
+  font-family:'Segoe UI', sans-serif;
+  overflow:hidden;
+  color:white;
+}
+
+.container{
+  width:900px;
+  height:500px;
+  position:relative;
+  background:#111;
+  border-radius:24px;
+  box-shadow:0 0 40px rgba(255,0,0,0.3);
+  overflow:hidden;
+  padding:40px;
+}
+
+/* Teddy walking animation */
+.teddy{
+  width:240px;
+  position:absolute;
+  bottom:30px;
+  left:-300px;
+  animation: walkIn 3s ease forwards;
+  cursor:pointer;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+@keyframes walkIn{
+  to{ left:80px; }
+}
+
+/* Hug effect */
+.teddy.hug{
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 25px rgba(255,0,0,0.8));
+}
+
+/* Text */
+.message{
+  position:absolute;
+  right:60px;
+  top:50%;
+  transform:translateY(-50%);
+  width:420px;
+  font-size:20px;
+  line-height:1.7;
+  text-shadow:0 0 12px rgba(255,0,0,0.6);
+}
+
+/* Typewriter cursor */
+.cursor{
+  display:inline-block;
+  width:2px;
+  height:20px;
+  background:white;
+  margin-left:5px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink{
+  50%{ opacity:0; }
+}
+
+/* Hug message */
+.hugText{
+  display:none;
+  margin-top:20px;
+  font-size:22px;
+  color:#ff8080;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+  <source src="hug.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+  <img src="teddy.png" class="teddy" id="teddy" onclick="hug()">
+
+  <div class="message">
+    <div id="typeText"></div><span class="cursor"></span>
+    <div class="hugText" id="hugText">
+      This is me hugging you tight 🤍<br>
+      Stay here for a moment 🧸
+    </div>
+  </div>
+
+</div>
+
+<script>
+const text = `Shivangi,
+
+I know I can’t always be there beside you,
+so I sent this teddy ahead 🧸
+
+For the quiet moments,
+for the days you feel low,
+and for every time you need comfort —
+
+click the teddy when you need a hug ❤️`;
+
+let i = 0;
+function typeWriter(){
+  if(i < text.length){
+    document.getElementById("typeText").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, 35);
+  }
+}
+
+setTimeout(typeWriter, 1800);
+
+/* Hug interaction */
+function hug(){
+  const teddy = document.getElementById("teddy");
+  teddy.classList.add("hug");
+
+  document.getElementById("hugText").style.display = "block";
+
+  const music = document.getElementById("music");
+  music.play();
+}
+</script>
+
+</body>
+</html>
