@@ -33,18 +33,10 @@ body{
   width:240px;
   position:absolute;
   bottom:30px;
-  left:80px;                 /* FIX: lock final position */
-  animation: walkIn 3s ease;
+  left:80px;
+  animation: walkIn 3s ease forwards;
   cursor:pointer;
 
-  background:transparent;
-  mix-blend-mode: normal;
-  filter: drop-shadow(0 0 20px rgba(255,0,0,0.35));
-
-  transition: transform 0.3s ease;
-}
-
-  /* transparency fixes */
   background:transparent;
   mix-blend-mode: normal;
   filter: drop-shadow(0 0 20px rgba(255,0,0,0.35));
@@ -57,10 +49,19 @@ body{
   to   { left:80px; }
 }
 
+/* OPEN ARMS */
+@keyframes openArms {
+  0%   { transform: scale(1); }
+  50%  { transform: scaleX(1.15) rotate(-2deg); }
+  100% { transform: scaleX(1.25) rotate(-3deg); }
+}
+
 /* HEARTBEAT + HUG */
 .teddy.hug{
-  animation: heartbeat 1.2s ease-in-out;
-  transform-origin: center bottom;
+  animation: openArms 0.4s ease forwards,
+             heartbeat 1.2s ease-in-out 0.4s;
+  filter: drop-shadow(0 0 35px rgba(255,0,0,0.9));
+  transform-origin: center center;
 }
 
 @keyframes heartbeat{
@@ -132,12 +133,12 @@ body{
 <script>
 const text = `Shivangi,
 
-I know I can’t always be there beside you,
+I know I can’t be there beside you today,
 so I sent this teddy ahead 🧸
 
 For the quiet moments,
 for the days you feel low,
-and for every time you need comfort.
+and for every time you need comfort until we're together,
 
 Click the teddy when you need a hug ❤️`;
 
@@ -154,12 +155,12 @@ setTimeout(typeWriter, 1800);
 
 function hug(){
   const teddy = document.getElementById("teddy");
-  teddy.classList.remove("hug");   // reset animation
-  void teddy.offsetWidth;         // force reflow
+
+  teddy.classList.remove("hug");
+  void teddy.offsetWidth;
   teddy.classList.add("hug");
 
   document.getElementById("hugText").style.display = "block";
-
   document.getElementById("music").play();
 }
 </script>
