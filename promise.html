@@ -71,6 +71,7 @@ body{
 .line.final{
   font-size:22px;
   color:#ff9a9a;
+  text-shadow: 0 0 18px rgba(255,120,120,0.9);
 }
 
 /* DESKTOP LAYOUT */
@@ -103,22 +104,26 @@ body{
     <div class="line">and somewhere along the way, our bond became something special.</div>
     <div class="line">So today, I don’t want to promise big things.</div>
     <div class="line">I just want to make you one simple promise.</div>
-    <div class="line">I promise to be there for you —</div>
+    <div class="line">I promise to be there for you,</div>
     <div class="line">in the highs, in the lows,</div>
     <div class="line">even on the days we don’t agree.</div>
     <div class="line">No matter what, I will always show up.</div>
-    <div class="line final">Yeh vaada raha.</div>
+    <div class="line final" id="finalLine">Yeh vaada raha.</div>
   </div>
 
 </div>
 
 <script>
-const lines = document.querySelectorAll('.line');
+const allLines = document.querySelectorAll('.line');
+const finalLine = document.getElementById('finalLine');
 const music = document.getElementById('music');
 const image = document.getElementById('startImage');
 
 let started = false;
 let index = 0;
+
+// Exclude final line from normal reveal
+const lines = Array.from(allLines).filter(line => line !== finalLine);
 
 music.volume = 0.35;
 
@@ -135,15 +140,14 @@ image.addEventListener('click', () => {
   started = true;
 
   image.classList.add('active');
-
   music.play();
+
   setTimeout(revealNext, 1200);
 });
 
-// OPTIONAL lyric sync
+// 🔥 FINAL LINE — ONLY via song timing
 music.addEventListener("timeupdate", () => {
-  const finalLine = document.querySelector('.final');
-  if(music.currentTime > 34){
+  if(music.currentTime >= 34 && finalLine.style.opacity !== "1"){
     finalLine.style.opacity = 1;
   }
 });
