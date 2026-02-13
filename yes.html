@@ -45,7 +45,6 @@ body{
   padding:20px;
   font-size:1.2em;
   line-height:1.8;
-  animation: scrollUp 95s linear forwards;
 }
 
 @keyframes scrollUp{
@@ -149,7 +148,7 @@ body{
 
     <p>Can I be any luckier?<br>
     I found you. My love.<br>
-    Something I once prayed for, not knowing when or how it would arrive —<br>
+    Something I once prayed for, not knowing when or how it would arrive<br>
     and then you did.</p>
 
     <p>I love you.<br>
@@ -166,7 +165,7 @@ body{
     That feeling when you fall asleep in my embrace.<br>
     When the world slows down.<br>
     When nothing else matters.<br>
-    When it’s just us — breathing, existing, safe.</p>
+    When it’s just us - breathing, existing, safe.</p>
 
     <p>You call me your safe space.<br>
     Do you know what that does to my heart?<br>
@@ -207,7 +206,7 @@ body{
     Still fall for you.</p>
 
     <p><strong>Happy Valentine’s Day, my love.</strong><br>
-    You are my comfort, my chaos, my peace —<br>
+    You are my comfort, my chaos, my peace<br>
     all at once. 💖</p>
 
   </div>
@@ -238,8 +237,12 @@ const finalLine = document.getElementById("finalLine");
 const message = document.querySelector(".message");
 
 startScreen.addEventListener("click", () => {
+
   music.play();
   startScreen.style.display = "none";
+
+  // START animation only after click
+  message.style.animation = "scrollUp 95s linear forwards";
 
   message.addEventListener("animationend", () => {
     document.getElementById("messageContainer").style.display = "none";
