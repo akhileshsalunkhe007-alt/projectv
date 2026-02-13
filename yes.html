@@ -45,7 +45,7 @@ body{
   padding:20px;
   font-size:1.2em;
   line-height:1.8;
-  animation: scrollUp 65s linear forwards;
+  animation: scrollUp 95s linear forwards;
 }
 
 @keyframes scrollUp{
@@ -241,15 +241,15 @@ startScreen.addEventListener("click", () => {
   startScreen.style.display = "none";
 
   // After scroll completes (~65s), show gallery
+  const message = document.querySelector(".message");
+
+message.addEventListener("animationend", () => {
+  document.getElementById("messageContainer").style.display = "none";
+  gallerySection.style.opacity = "1";
+
   setTimeout(() => {
-    document.getElementById("messageContainer").style.display = "none";
-    gallerySection.style.opacity = "1";
-
-    setTimeout(() => {
-      finalLine.style.opacity = "1";
-    }, 3000);
-
-  }, 65000);
+    finalLine.style.opacity = "1";
+  }, 2000);
 });
 </script>
 
