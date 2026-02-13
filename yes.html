@@ -235,21 +235,21 @@ const startScreen = document.getElementById("startScreen");
 const music = document.getElementById("bgMusic");
 const gallerySection = document.getElementById("gallerySection");
 const finalLine = document.getElementById("finalLine");
+const message = document.querySelector(".message");
 
 startScreen.addEventListener("click", () => {
   music.play();
   startScreen.style.display = "none";
 
-  // After scroll completes (~65s), show gallery
-  const message = document.querySelector(".message");
+  message.addEventListener("animationend", () => {
+    document.getElementById("messageContainer").style.display = "none";
+    gallerySection.style.opacity = "1";
 
-message.addEventListener("animationend", () => {
-  document.getElementById("messageContainer").style.display = "none";
-  gallerySection.style.opacity = "1";
+    setTimeout(() => {
+      finalLine.style.opacity = "1";
+    }, 2000);
+  });
 
-  setTimeout(() => {
-    finalLine.style.opacity = "1";
-  }, 2000);
 });
 </script>
 
