@@ -1,70 +1,260 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>You ❤️</title>
-  <style>
-    body {
-      background: linear-gradient(#ff758c, #ff7eb3);
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      padding: 50px;
-      color: white;
-    }
-    h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
-    }
-    .photo {
-  width: 220px;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 20px;
-  margin: 10px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You ❤️</title>
+
+<style>
+body{
+  margin:0;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at center, rgba(255,255,255,0.15), transparent 60%),
+    linear-gradient(#ff758c, #ff7eb3);
+  font-family:'Segoe UI', sans-serif;
+  color:white;
+  text-align:center;
 }
 
-    .gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+/* START SCREEN */
+#startScreen{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(#ff758c,#ff7eb3);
+  z-index:100;
+  cursor:pointer;
 }
-    
-    .message {
-      font-size: 1.4em;
-      margin: 30px auto;
-      max-width: 600px;
-      line-height: 1.6;
-    }
-  </style>
+
+#startScreen h1{
+  font-size:2em;
+}
+
+/* MESSAGE SECTION */
+#messageContainer{
+  position:absolute;
+  width:100%;
+  height:100vh;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.message{
+  max-width:700px;
+  padding:20px;
+  font-size:1.2em;
+  line-height:1.8;
+  animation: scrollUp 65s linear forwards;
+}
+
+@keyframes scrollUp{
+  from{ transform:translateY(100vh); }
+  to{ transform:translateY(-110%); }
+}
+
+/* GALLERY */
+#gallerySection{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  transition:opacity 2s ease;
+}
+
+.gallery{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:20px;
+}
+
+.photo{
+  width:220px;
+  height:300px;
+  object-fit:cover;
+  border-radius:20px;
+  margin:10px;
+  box-shadow:0 10px 20px rgba(0,0,0,0.3);
+  transition:transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.photo:hover{
+  transform:scale(1.05);
+  box-shadow:0 15px 35px rgba(255,255,255,0.4);
+}
+
+#finalLine{
+  margin-top:30px;
+  font-size:1.4em;
+  opacity:0;
+  transition:opacity 2s ease;
+}
+
+/* FLOATING HEARTS */
+.hearts::before,
+.hearts::after{
+  content:"❤️";
+  position:fixed;
+  font-size:22px;
+  animation:float 8s infinite linear;
+  opacity:0.4;
+}
+
+.hearts::before{ left:10%; top:100%; }
+.hearts::after{ right:15%; top:110%; animation-delay:4s; }
+
+@keyframes float{
+  from{ transform:translateY(0); }
+  to{ transform:translateY(-120vh); }
+}
+
+/* MOBILE */
+@media (max-width:600px){
+
+  .message{
+    font-size:1.05em;
+    padding:0 18px;
+  }
+
+  .photo{
+    width:45%;
+    height:220px;
+  }
+
+}
+</style>
 </head>
 
 <body>
 
-  <!-- Background Music -->
-  <audio autoplay loop>
-    <source src="song.mp3" type="audio/mpeg">
-  </audio>
-
-  <h1>Hi you ❤️</h1>
-
-  <div class="message">
-    <!-- You’ll paste your drafted message here -->
-    This is where your words go.<br>
-    Honest. Simple. Yours.
-  </div>
-
-  <!-- Photos -->
-  <div class="gallery">
-  <img src="photo1.jpg" class="photo">
-  <img src="photo2.jpg" class="photo">
-  <img src="photo3.jpg" class="photo">
-  <img src="photo4.jpg" class="photo">
-  <img src="photo5.jpg" class="photo">
+<!-- START SCREEN -->
+<div id="startScreen">
+  <h1>Tap to open ❤️</h1>
 </div>
-  
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="hearts"></div>
+
+<!-- MESSAGE -->
+<div id="messageContainer">
   <div class="message">
-    Happy Valentine’s Day 💖
+
+    <p>Can I be any luckier?<br>
+    I found you. My love.<br>
+    Something I once prayed for, not knowing when or how it would arrive —<br>
+    and then you did.</p>
+
+    <p>I love you.<br>
+    Not just the easy, smiling, glowing you,<br>
+    but the quiet you, the overwhelmed you,<br>
+    the stubborn you, the tired you,<br>
+    the version of you that the world doesn’t always see.</p>
+
+    <p>On your good days.<br>
+    On your bad days.<br>
+    And especially on your worst days.</p>
+
+    <p>You know what gives me the most comfort?<br>
+    That feeling when you fall asleep in my embrace.<br>
+    When the world slows down.<br>
+    When nothing else matters.<br>
+    When it’s just us — breathing, existing, safe.</p>
+
+    <p>You call me your safe space.<br>
+    Do you know what that does to my heart?<br>
+    To be the place where you rest your fears,<br>
+    where you drop your guard,<br>
+    where you simply are.</p>
+
+    <p>I don’t want anything more than this.<br>
+    Not grand gestures. Not perfect days.<br>
+    Just you.</p>
+
+    <p>There are days when we disagree.<br>
+    Days when we are stubborn.<br>
+    Days when silence stretches a little longer than it should.</p>
+
+    <p>But can we stay away from each other?<br>
+    Never.</p>
+
+    <p>It’s always just a matter of time,<br>
+    a few hours and we find our way back.<br>
+    Because we choose to.</p>
+
+    <p>And today isn’t just about love.<br>
+    It’s about that choice.</p>
+
+    <p>Choosing you, even when it’s not easy.<br>
+    Choosing us, even when we argue.<br>
+    Choosing to show up, again, and again, and again.</p>
+
+    <p>I choose you on the calm days.<br>
+    I choose you in the chaos.<br>
+    I choose you when we laugh.<br>
+    I choose you when we heal.</p>
+
+    <p>And if I had to do this life all over again,<br>
+    I would still look for you.<br>
+    Still wait for you.<br>
+    Still fall for you.</p>
+
+    <p><strong>Happy Valentine’s Day, my love.</strong><br>
+    You are my comfort, my chaos, my peace —<br>
+    all at once. 💖</p>
+
   </div>
+</div>
+
+<!-- GALLERY -->
+<div id="gallerySection">
+  <h1>Us ❤️</h1>
+
+  <div class="gallery">
+    <img src="photo1.jpg" class="photo">
+    <img src="photo2.jpg" class="photo">
+    <img src="photo3.jpg" class="photo">
+    <img src="photo4.jpg" class="photo">
+    <img src="photo5.jpg" class="photo">
+  </div>
+
+  <div id="finalLine">
+    I’d still choose you. Every single time. 💘
+  </div>
+</div>
+
+<script>
+const startScreen = document.getElementById("startScreen");
+const music = document.getElementById("bgMusic");
+const gallerySection = document.getElementById("gallerySection");
+const finalLine = document.getElementById("finalLine");
+
+startScreen.addEventListener("click", () => {
+  music.play();
+  startScreen.style.display = "none";
+
+  // After scroll completes (~65s), show gallery
+  setTimeout(() => {
+    document.getElementById("messageContainer").style.display = "none";
+    gallerySection.style.opacity = "1";
+
+    setTimeout(() => {
+      finalLine.style.opacity = "1";
+    }, 3000);
+
+  }, 65000);
+});
+</script>
 
 </body>
 </html>
